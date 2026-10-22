@@ -142,24 +142,24 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className="flex items-center gap-2 p-3 text-sm text-rose-300 bg-rose-500/10 border border-rose-500/20 rounded-xl">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400" />
+          <div className="flex items-center gap-2 p-3 text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-xl font-medium">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600" />
             <span>{error}</span>
           </div>
         )}
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
             Customer / Account *
           </label>
           <div className="relative">
-            <User className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+            <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             <select
               name="userId"
               value={formData.userId}
               onChange={handleChange}
               disabled={Boolean(paymentToEdit) || loadingUsers}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 disabled:opacity-50"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 disabled:bg-slate-50 disabled:text-slate-400"
               required
             >
               <option value="">-- Choose Customer --</option>
@@ -173,7 +173,7 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
             Link to Specific Order (Optional)
           </label>
           <select
@@ -181,7 +181,7 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
             value={formData.orderId}
             onChange={handleChange}
             disabled={loadingOrders || !formData.userId}
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 disabled:opacity-50"
+            className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 disabled:bg-slate-50 disabled:text-slate-400"
           >
             <option value="">-- General Account Credit (No specific order) --</option>
             {userOrders.map((o) => (
@@ -194,11 +194,11 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
               Amount Received (PKR) *
             </label>
             <div className="relative">
-              <DollarSign className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+              <DollarSign className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
               <input
                 type="number"
                 min="1"
@@ -206,23 +206,23 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
                 value={formData.amount}
                 onChange={handleChange}
                 placeholder="e.g. 5000"
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all font-semibold"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
               Payment Method *
             </label>
             <div className="relative">
-              <CreditCard className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+              <CreditCard className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
               <select
                 name="method"
                 value={formData.method}
                 onChange={handleChange}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 <option value="Cash">Cash</option>
                 <option value="Bank Transfer">Bank Transfer (IBFT)</option>
@@ -237,24 +237,24 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
               Payment Date *
             </label>
             <div className="relative">
-              <Calendar className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+              <Calendar className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
               <input
                 type="date"
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
               Ref / Txn / Cheque #
             </label>
             <input
@@ -263,40 +263,40 @@ export const PaymentModal = ({ isOpen, onClose, onSuccess, paymentToEdit = null,
               value={formData.reference}
               onChange={handleChange}
               placeholder="e.g. TXN-1098234"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
             Notes / Remarks (Optional)
           </label>
           <div className="relative">
-            <FileText className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+            <FileText className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             <input
               type="text"
               name="notes"
               value={formData.notes}
               onChange={handleChange}
               placeholder="e.g. Advance payment for upcoming shipments"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-sm text-slate-400 hover:text-white rounded-xl"
+            className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-xs transition-colors disabled:opacity-50 cursor-pointer"
           >
             {loading && <Loader2 className="w-4 h-4 animate-spin" />}
             <span>{paymentToEdit ? 'Update Payment' : 'Record Payment'}</span>

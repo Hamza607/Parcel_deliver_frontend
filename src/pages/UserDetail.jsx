@@ -82,22 +82,22 @@ export const UserDetail = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/users')}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-white font-['Outfit']">{user.name}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 font-['Outfit']">{user.name}</h1>
               <StatusBadge status={user.status} />
             </div>
-            <p className="text-xs text-slate-400">{user.company || 'Customer Account Ledger'}</p>
+            <p className="text-xs text-slate-500">{user.company || 'Customer Account Ledger'}</p>
           </div>
         </div>
 
         <button
           onClick={() => setIsPaymentModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-emerald-600/30 transition-all cursor-pointer self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer self-start sm:self-auto"
         >
           <DollarSign className="w-4 h-4" />
           <span>Record Customer Payment</span>
@@ -107,32 +107,32 @@ export const UserDetail = () => {
       {/* User Info Overview & Financial Balance Bar */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Card */}
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block border-b border-slate-800 pb-2">
+        <div className="p-5 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block border-b border-slate-200 pb-2">
             Account Profile
           </span>
-          <div className="space-y-2 text-xs">
-            <div className="flex items-center gap-2 text-slate-300">
+          <div className="space-y-2.5 text-xs">
+            <div className="flex items-center gap-2 text-slate-700">
               <Mail className="w-4 h-4 text-slate-400" />
               <span>{user.email}</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-300">
+            <div className="flex items-center gap-2 text-slate-700">
               <Phone className="w-4 h-4 text-slate-400" />
               <span>{user.phone}</span>
             </div>
             {user.company && (
-              <div className="flex items-center gap-2 text-slate-300">
+              <div className="flex items-center gap-2 text-slate-700">
                 <Building className="w-4 h-4 text-slate-400" />
                 <span>{user.company}</span>
               </div>
             )}
             {user.address && (
-              <div className="flex items-center gap-2 text-slate-300">
+              <div className="flex items-center gap-2 text-slate-700">
                 <MapPin className="w-4 h-4 text-slate-400" />
                 <span>{user.address}</span>
               </div>
             )}
-            <div className="flex items-center gap-2 text-slate-400 pt-2 border-t border-slate-800 text-[11px]">
+            <div className="flex items-center gap-2 text-slate-500 pt-2 border-t border-slate-100 text-[11px]">
               <Calendar className="w-3.5 h-3.5" />
               <span>Registered: {new Date(user.createdAt).toLocaleDateString()}</span>
             </div>
@@ -167,23 +167,23 @@ export const UserDetail = () => {
 
       {/* Tabs: Orders / Payments */}
       <div className="space-y-4">
-        <div className="flex items-center gap-2 border-b border-slate-800">
+        <div className="flex items-center gap-6 border-b border-slate-200">
           <button
             onClick={() => setActiveTab('orders')}
-            className={`pb-3 text-sm font-semibold transition-all relative ${
+            className={`pb-3 text-sm font-semibold transition-all relative cursor-pointer ${
               activeTab === 'orders'
-                ? 'text-indigo-400 border-b-2 border-indigo-500'
-                : 'text-slate-400 hover:text-white'
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             Consignment Orders ({orders.length})
           </button>
           <button
             onClick={() => setActiveTab('payments')}
-            className={`pb-3 text-sm font-semibold transition-all relative ${
+            className={`pb-3 text-sm font-semibold transition-all relative cursor-pointer ${
               activeTab === 'payments'
-                ? 'text-indigo-400 border-b-2 border-indigo-500'
-                : 'text-slate-400 hover:text-white'
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             Recorded Payments ({payments.length})
@@ -191,21 +191,21 @@ export const UserDetail = () => {
         </div>
 
         {activeTab === 'orders' ? (
-          <div className="overflow-hidden rounded-2xl bg-slate-900/60 border border-slate-800 shadow-xl">
+          <div className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-950/70 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800">
+                <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider text-[11px] border-b border-slate-200">
                   <tr>
-                    <th className="px-4 py-3 font-semibold">Tracking ID</th>
-                    <th className="px-4 py-3 font-semibold">Date</th>
-                    <th className="px-4 py-3 font-semibold">Receiver</th>
-                    <th className="px-4 py-3 font-semibold">Destination</th>
-                    <th className="px-4 py-3 font-semibold">Delivery Charge</th>
-                    <th className="px-4 py-3 font-semibold">Status</th>
-                    <th className="px-4 py-3 font-semibold text-right">View</th>
+                    <th className="px-4 py-3.5 font-semibold">Tracking ID</th>
+                    <th className="px-4 py-3.5 font-semibold">Date</th>
+                    <th className="px-4 py-3.5 font-semibold">Receiver</th>
+                    <th className="px-4 py-3.5 font-semibold">Destination</th>
+                    <th className="px-4 py-3.5 font-semibold">Delivery Charge</th>
+                    <th className="px-4 py-3.5 font-semibold">Status</th>
+                    <th className="px-4 py-3.5 font-semibold text-right">View</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-slate-100 text-slate-700">
                   {orders.length === 0 ? (
                     <tr>
                       <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
@@ -214,30 +214,30 @@ export const UserDetail = () => {
                     </tr>
                   ) : (
                     orders.map((o) => (
-                      <tr key={o._id} className="hover:bg-slate-800/40">
-                        <td className="px-4 py-3 font-mono font-semibold text-indigo-300">
+                      <tr key={o._id} className="hover:bg-slate-50/80 transition-colors">
+                        <td className="px-4 py-3.5 font-mono font-bold text-blue-600">
                           {o.trackingId}
                         </td>
-                        <td className="px-4 py-3 text-slate-400">
+                        <td className="px-4 py-3.5 text-slate-500">
                           {new Date(o.createdAt).toLocaleDateString()}
                         </td>
-                        <td className="px-4 py-3 font-medium text-white">{o.receiver?.name}</td>
-                        <td className="px-4 py-3 truncate max-w-[200px] text-slate-400">
+                        <td className="px-4 py-3.5 font-semibold text-slate-900">{o.receiver?.name}</td>
+                        <td className="px-4 py-3.5 truncate max-w-[200px] text-slate-500">
                           {o.deliveryAddress}
                         </td>
-                        <td className="px-4 py-3 font-semibold text-white">
+                        <td className="px-4 py-3.5 font-bold text-slate-900">
                           PKR {o.deliveryCharge?.toLocaleString()}
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3.5">
                           <StatusBadge status={o.status} />
                         </td>
-                        <td className="px-4 py-3 text-right">
+                        <td className="px-4 py-3.5 text-right">
                           <button
                             onClick={() => {
                               setSelectedOrder(o);
                               setIsDetailModalOpen(true);
                             }}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                            className="p-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors cursor-pointer"
                           >
                             <Eye className="w-3.5 h-3.5" />
                           </button>
@@ -250,19 +250,19 @@ export const UserDetail = () => {
             </div>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-2xl bg-slate-900/60 border border-slate-800 shadow-xl">
+          <div className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-950/70 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800">
+                <thead className="bg-slate-50 text-slate-600 uppercase tracking-wider text-[11px] border-b border-slate-200">
                   <tr>
-                    <th className="px-4 py-3 font-semibold">Payment Date</th>
-                    <th className="px-4 py-3 font-semibold">Amount Received</th>
-                    <th className="px-4 py-3 font-semibold">Payment Method</th>
-                    <th className="px-4 py-3 font-semibold">Reference / Receipt #</th>
-                    <th className="px-4 py-3 font-semibold">Notes</th>
+                    <th className="px-4 py-3.5 font-semibold">Payment Date</th>
+                    <th className="px-4 py-3.5 font-semibold">Amount Received</th>
+                    <th className="px-4 py-3.5 font-semibold">Payment Method</th>
+                    <th className="px-4 py-3.5 font-semibold">Reference / Receipt #</th>
+                    <th className="px-4 py-3.5 font-semibold">Notes</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-slate-100 text-slate-700">
                   {payments.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="px-4 py-8 text-center text-slate-400">
@@ -271,18 +271,22 @@ export const UserDetail = () => {
                     </tr>
                   ) : (
                     payments.map((p) => (
-                      <tr key={p._id} className="hover:bg-slate-800/40">
-                        <td className="px-4 py-3 text-slate-300">
+                      <tr key={p._id} className="hover:bg-slate-50/80 transition-colors">
+                        <td className="px-4 py-3.5 text-slate-600">
                           {new Date(p.date || p.createdAt).toLocaleDateString()}
                         </td>
-                        <td className="px-4 py-3 font-bold text-emerald-400 text-sm">
+                        <td className="px-4 py-3.5 font-bold text-emerald-600 text-sm">
                           PKR {p.amount?.toLocaleString()}
                         </td>
-                        <td className="px-4 py-3 text-slate-300 font-medium">{p.method}</td>
-                        <td className="px-4 py-3 font-mono text-slate-400">
+                        <td className="px-4 py-3.5">
+                          <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                            {p.method}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3.5 font-mono text-slate-700">
                           {p.reference || '—'}
                         </td>
-                        <td className="px-4 py-3 text-slate-400">{p.notes || '—'}</td>
+                        <td className="px-4 py-3.5 text-slate-500">{p.notes || '—'}</td>
                       </tr>
                     ))
                   )}
