@@ -22,7 +22,9 @@ export const ResetPasswordModal = ({ isOpen, onClose, onSuccess, user }) => {
     try {
       setLoading(true);
       await api.put(`/users/${user.id || user._id}/reset-password`, { newPassword });
+
       onSuccess();
+
     } catch (err) {
       console.error('Reset password error:', err);
       setError(err.response?.data?.message || 'Failed to reset password');
